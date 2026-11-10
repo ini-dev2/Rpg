@@ -11,6 +11,10 @@ namespace Rpg.Domain
     {
         private readonly List<IInventoryItem> _items = new();
 
+        public IReadOnlyList<IInventoryItem> Items => _items;
+
+        public event Action OnRefresh;
+
         public Inventory()
         {
         }
@@ -20,8 +24,6 @@ namespace Rpg.Domain
             _items = items ?? throw new ArgumentNullException(nameof(items));
         }
 
-        public IReadOnlyList<IInventoryItem> Items => _items;
-
         public void Add(IInventoryItem item)
         {
             if (item == null)
@@ -29,7 +31,14 @@ namespace Rpg.Domain
                 throw new ArgumentNullException(nameof(item));
             }
 
+            if (_items.Contains(item))
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
             _items.Add(item);
+
+            OnRefresh?.Invoke();
         }
 
         public void Remove(IInventoryItem item)
@@ -39,7 +48,14 @@ namespace Rpg.Domain
                 throw new ArgumentNullException(nameof(item));
             }
 
+            if (!_items.Contains(item))
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
             _items.Remove(item);
+
+            OnRefresh?.Invoke();
         }
     }
 }

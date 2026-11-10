@@ -1,4 +1,16 @@
-﻿{
+{
     "name": "Rpg.Presentations",
-    "rootNamespace": "Rpg.Presentations"
+    "rootNamespace": "Rpg.Presentations",
+    "references": [
+        "GUID:6576577e240ef58428793ec57283b174"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
